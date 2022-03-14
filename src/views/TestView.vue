@@ -1,13 +1,11 @@
 <template>
-  <div class="about">
+  <div class="test">
     <h1>This is an about page</h1>
   </div>
 </template>
 
 <style scoped>
-.about{
-  background-color: #C1E1C1;
+.test{
+  background-color: #FAA0A0;
 }
-
 </style>
-

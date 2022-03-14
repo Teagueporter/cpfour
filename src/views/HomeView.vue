@@ -1,18 +1,70 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+<div>
+  <div class="wrapper">
+    <div class="search">
+      <form class="pure-form">
+        <i class="fas fa-search"></i><input v-model="searchText" />
+      </form>
+    </div>
   </div>
+  <ProductList :music="music" />
+</div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
+<script>
+import ProductList from "../components/ProductList.vue"
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld
-  }
+    ProductList
+  },
+  data() {
+    return {
+      searchText: '',
+    }
+  },
+  computed: {
+    music() {
+      return this.$root.$data.music.filter(song => song.name.toLowerCase().search(this.searchText.toLowerCase()) >= 0);
+    }
+  },
 }
 </script>
+
+<style scoped>
+.wrapper {
+  background-color: #1D1C1A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search {
+  background-color: #cfcfc4;
+  border: 1px solid #cfcfc4;
+  border-radius: 4px;
+  width: 50%;
+}
+
+form {
+  display: table;
+  width: 100%;
+}
+
+i {
+  display: table-cell;
+  padding-left: 10px;
+  width: 1px;
+}
+
+input {
+  display: table-cell;
+  font-size: 20px;
+  border: none !important;
+  box-shadow: none !important;
+  width: 100%;
+  height: 40px;
+}
+</style>
+
